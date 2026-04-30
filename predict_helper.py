@@ -91,7 +91,9 @@ def train_or_load_then_predict(
         )
         trainer.fit(model, train_dl, val_dl)
 
-    full_ds = TimeSeriesDataSet.from_dataset(train_ds, df, predict=True, stop_randomization=True)
+    # Build prediction dataset over the FULL df (not just predict-mode last
+    # sequence). This iterates every valid window.
+    full_ds = TimeSeriesDataSet.from_dataset(train_ds, df, stop_randomization=True)
     full_dl = full_ds.to_dataloader(train=False, batch_size=256, num_workers=2)
 
     out_arr, decoder_idx = predict_full(model, full_dl, full_ds)
