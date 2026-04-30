@@ -1,0 +1,229 @@
+{
+  "n_rows": 15168,
+  "horizons": [
+    1,
+    2,
+    4
+  ],
+  "lags": [
+    1,
+    2,
+    4,
+    24
+  ],
+  "feature_cols_A": [
+    "bank_rate",
+    "ref_rate",
+    "spread",
+    "spread_pct",
+    "hour_of_day",
+    "day_of_week",
+    "is_peak",
+    "is_weekend",
+    "sin_hour",
+    "cos_hour",
+    "sin_dow",
+    "cos_dow",
+    "hour_of_week",
+    "sin_hour_of_week",
+    "cos_hour_of_week",
+    "hours_from_peak",
+    "day_part",
+    "business_hour",
+    "typical_turnover",
+    "typical_turnover_week",
+    "turnover_lag_1",
+    "turnover_lag_2",
+    "turnover_lag_4",
+    "turnover_lag_24",
+    "bank_rate_lag_1",
+    "bank_rate_lag_2",
+    "bank_rate_lag_4",
+    "bank_rate_lag_24",
+    "ref_rate_lag_1",
+    "ref_rate_lag_2",
+    "ref_rate_lag_4",
+    "ref_rate_lag_24",
+    "turnover_roll_mean_4h",
+    "turnover_roll_mean_12h",
+    "turnover_roll_std_4h"
+  ],
+  "feature_cols_B_base": [
+    "turnover_lag_1",
+    "bank_rate_lag_1",
+    "bank_rate_lag_2",
+    "bank_rate_lag_4"
+  ],
+  "targets_A": [
+    "y_turnover_1h",
+    "y_turnover_2h",
+    "y_turnover_4h"
+  ],
+  "target_B": "y_bank_rate",
+  "splits": {
+    "n_rows": 15168,
+    "train_pool_end": 10617,
+    "val_end": 12892,
+    "ensemble_val": [
+      10617,
+      12892
+    ],
+    "test": [
+      12892,
+      15168
+    ],
+    "ts_cv_folds": [
+      {
+        "train": [
+          0,
+          2148
+        ],
+        "val": [
+          2148,
+          4296
+        ]
+      },
+      {
+        "train": [
+          0,
+          4296
+        ],
+        "val": [
+          4296,
+          6444
+        ]
+      },
+      {
+        "train": [
+          0,
+          6444
+        ],
+        "val": [
+          6444,
+          8592
+        ]
+      },
+      {
+        "train": [
+          0,
+          8592
+        ],
+        "val": [
+          8592,
+          10740
+        ]
+      },
+      {
+        "train": [
+          0,
+          10740
+        ],
+        "val": [
+          10740,
+          12888
+        ]
+      }
+    ]
+  },
+  "first_hour_utc": "2024-08-01T19:00:00+00:00",
+  "last_hour_utc": "2026-04-25T18:00:00+00:00",
+  "feature_cols_A_reduced": [
+    "turnover_lag_1",
+    "bank_rate",
+    "turnover_roll_mean_12h",
+    "turnover_roll_mean_4h",
+    "turnover_lag_24",
+    "hour_of_day",
+    "typical_turnover_week",
+    "turnover_lag_2",
+    "typical_turnover",
+    "sin_hour",
+    "bank_rate_lag_4",
+    "ref_rate_lag_1",
+    "day_part",
+    "hours_from_peak",
+    "ref_rate",
+    "ref_rate_lag_2",
+    "ref_rate_lag_24",
+    "turnover_roll_std_4h",
+    "bank_rate_lag_24",
+    "bank_rate_lag_2"
+  ],
+  "feature_cols_B_base_reduced": [
+    "turnover_lag_1",
+    "bank_rate_lag_1",
+    "bank_rate_lag_2",
+    "bank_rate_lag_4"
+  ],
+  "feature_cols_A_full": [
+    "bank_rate",
+    "ref_rate",
+    "spread",
+    "spread_pct",
+    "hour_of_day",
+    "day_of_week",
+    "is_peak",
+    "is_weekend",
+    "sin_hour",
+    "cos_hour",
+    "sin_dow",
+    "cos_dow",
+    "hour_of_week",
+    "sin_hour_of_week",
+    "cos_hour_of_week",
+    "hours_from_peak",
+    "day_part",
+    "business_hour",
+    "typical_turnover",
+    "typical_turnover_week",
+    "turnover_lag_1",
+    "turnover_lag_2",
+    "turnover_lag_4",
+    "turnover_lag_24",
+    "bank_rate_lag_1",
+    "bank_rate_lag_2",
+    "bank_rate_lag_4",
+    "bank_rate_lag_24",
+    "ref_rate_lag_1",
+    "ref_rate_lag_2",
+    "ref_rate_lag_4",
+    "ref_rate_lag_24",
+    "turnover_roll_mean_4h",
+    "turnover_roll_mean_12h",
+    "turnover_roll_std_4h"
+  ],
+  "feature_cols_B_base_full": [
+    "ref_rate",
+    "hour_of_day",
+    "day_of_week",
+    "is_peak",
+    "is_weekend",
+    "sin_hour",
+    "cos_hour",
+    "sin_dow",
+    "cos_dow",
+    "hour_of_week",
+    "sin_hour_of_week",
+    "cos_hour_of_week",
+    "hours_from_peak",
+    "day_part",
+    "business_hour",
+    "typical_turnover",
+    "typical_turnover_week",
+    "turnover_lag_1",
+    "turnover_lag_2",
+    "turnover_lag_4",
+    "turnover_lag_24",
+    "bank_rate_lag_1",
+    "bank_rate_lag_2",
+    "bank_rate_lag_4",
+    "bank_rate_lag_24",
+    "ref_rate_lag_1",
+    "ref_rate_lag_2",
+    "ref_rate_lag_4",
+    "ref_rate_lag_24",
+    "turnover_roll_mean_4h",
+    "turnover_roll_mean_12h",
+    "turnover_roll_std_4h"
+  ]
+}
