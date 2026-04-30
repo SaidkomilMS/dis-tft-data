@@ -59,11 +59,6 @@ def train_or_load_then_predict(
         print(f"cached {name}")
         return np.load(pred_npy), np.load(idx_npy)
 
-    train_ds = make_ds(target)
-    val_ds = TimeSeriesDataSet.from_dataset(train_ds, df, predict=False, stop_randomization=True)
-    train_dl = train_ds.to_dataloader(train=True, batch_size=128, num_workers=2)
-    val_dl = val_ds.to_dataloader(train=False, batch_size=256, num_workers=2)
-
     pl.seed_everything(7)
 
     if os.path.exists(ckpt_path):
@@ -71,6 +66,12 @@ def train_or_load_then_predict(
         model = TemporalFusionTransformer.load_from_checkpoint(ckpt_path)
     else:
         print(f"training {name} from scratch")
+        train_ds = make_ds(target)
+        val_ds = TimeSeriesDataSet.from_dataset(
+            train_ds, df, predict=False, stop_randomization=True
+        )
+        train_dl = train_ds.to_dataloader(train=True, batch_size=128, num_workers=2)
+        val_dl = val_ds.to_dataloader(train=False, batch_size=256, num_workers=2)
         model = TemporalFusionTransformer.from_dataset(
             train_ds,
             **params,
