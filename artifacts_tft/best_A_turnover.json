@@ -1,0 +1,7 @@
+{
+  "hidden_size": 48,
+  "attention_head_size": 4,
+  "dropout": 0.1075757197552412,
+  "hidden_continuous_size": 16,
+  "learning_rate": 0.0035041431461460657
+}
