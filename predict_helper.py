@@ -11,14 +11,23 @@ def predict_full(model, full_dl, full_ds):
     if torch.cuda.is_available():
         model = model.cuda()
     all_preds = []
+    all_time_idx = []
     for batch in full_dl:
         x = batch[0]
         x = {k: (v.cuda() if hasattr(v, "cuda") else v) for k, v in x.items()}
         with torch.no_grad():
             out = model(x)
         all_preds.append(out["prediction"].cpu().numpy())
+        ti = x.get("decoder_time_idx")
+        if ti is not None:
+            if hasattr(ti, "cpu"):
+                ti = ti.cpu().numpy()
+            all_time_idx.append(ti[:, 0])
     out_arr = np.concatenate(all_preds, axis=0)
-    decoder_idx = full_ds.x_to_index(full_ds)["time_idx"].values
+    if all_time_idx:
+        decoder_idx = np.concatenate(all_time_idx)
+    else:
+        decoder_idx = np.arange(len(out_arr))
     return out_arr, decoder_idx
 
 
