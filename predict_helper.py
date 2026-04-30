@@ -91,12 +91,15 @@ def train_or_load_then_predict(
         )
         trainer.fit(model, train_dl, val_dl)
 
-    # Build prediction dataset over the FULL df (not just predict-mode last
-    # sequence). This iterates every valid window.
-    full_ds = TimeSeriesDataSet.from_dataset(train_ds, df, stop_randomization=True)
-    full_dl = full_ds.to_dataloader(train=False, batch_size=256, num_workers=2)
-
-    out_arr, decoder_idx = predict_full(model, full_dl, full_ds)
+    # Use BaseModel.predict — handles dataset construction internally and
+    # bypasses the trainer.predict() PredictCallback bug.
+    raw = model.predict(df, mode="raw", return_index=True)
+    preds_tensor = raw.output["prediction"] if hasattr(raw, "output") else raw[0]["prediction"]
+    out_arr = preds_tensor.cpu().numpy()
+    if hasattr(raw, "index"):
+        decoder_idx = raw.index["time_idx"].values
+    else:
+        decoder_idx = raw[1]["time_idx"].values
     np.save(pred_npy, out_arr)
     np.save(idx_npy, decoder_idx)
     return out_arr, decoder_idx
